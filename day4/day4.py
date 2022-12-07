@@ -6,5 +6,6 @@ for line in lines:
     [s1, e1] = [int(i) for i in one.split('-')]
     [s2, e2] = [int(i) for i in two.split('-')]
     total1 += (0,1)[(s1 <= s2 and e1 >= e2) or (s2 <= s1 and e2 >= e1)]
-    total2 += (0,1)[(s2 >= s1 and s2 <= e1) or (s1 >= s2 and s1 <= e2)]
-print(total1, total2)
+    total2 += (0,1)[s2 in range(s1,e1+1) or s1 in range(s2, e2+1)]
+print(f"There are {total1} total rows where one elf's assignments encompass their partner's.")
+print(f"There are {total2} rows where the two elves' assignments overlap at all.")
